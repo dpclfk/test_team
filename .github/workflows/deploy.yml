@@ -1,0 +1,25 @@
+name: Deploy project
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test_node:
+    runs-on: unbuntu-latest
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v4
+
+      - name: Add SSH key
+        uses: webfactory/ssh-agent@v0.5.5
+        with: ssh-private-key:${{ secrets.EC2_KEY }}
+
+      - name: Ensute SSH directory exists
+        run: |
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+
+      - name: ADD SSH known hosts
+        run: ssh-keyscan -H $ {{ sectet.EC2_HOST }} >> ~/.ssh/known_hosts

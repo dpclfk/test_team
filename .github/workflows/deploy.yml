@@ -23,7 +23,7 @@ jobs:
           chmod 700 ~/.ssh
 
       - name: ADD SSH known hosts
-        run: ssh-keyscan -H $ {{ sectet.EC2_HOST }} >> ~/.ssh/known_hosts
+        run: ssh-keyscan -H $ {{ secret.EC2_HOST }} >> ~/.ssh/known_hosts
 
       - name: test node
         run: ssh ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} '

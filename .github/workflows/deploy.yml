@@ -137,7 +137,7 @@ jobs:
 
   depoly_back:
     runs-on: ubuntu-latest
-    neds:
+    needs:
       - test_node
       - test_mysql
       - test_mongo
